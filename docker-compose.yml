@@ -29,7 +29,7 @@ services:
 		enviroment: 
 			- MYSQL_ROOT_PASSWORD=geheim
 		env_file:
-			- web.env
+			- mysql.env
 	nextcloud:
 		image: nextcloud:apache
 		restart: always
@@ -50,5 +50,5 @@ services:
 			- LETSENCRYPT_HOST=nextcloud
 			- LETSENCRYPT_EMAIL=email
 		env_file:
-			- web.env
+			- nextcloud.env
 
