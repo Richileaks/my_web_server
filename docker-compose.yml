@@ -10,7 +10,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /root/web-docker/nginx/conf.d:/etc/nginx/conf.d
       - /root/web-docker/nginx/vhost.d:/etc/nginx/vhost.d
-      - /root/web-docker/nginx/dhparm:/etc/nginx/dhparm
+      - /root/web-docker/nginx/dhparam:/etc/nginx/dhparam
       - /root/web-docker/nginx/certs:/etc/nginx/certs:ro
       - /root/web-docker/nginx/html:/usr/share/nginx/html
     labels:
