@@ -29,7 +29,7 @@ services:
       - /root/web-docker/mariadb/mysql:/var/lib/mysql
     env_file:
       - mysql.env
-      - mysql_nexcloud.env
+      - mysql_nextcloud.env
   nextcloud:
     image: nextcloud
     restart: always
