@@ -1,28 +1,28 @@
 version: "2"
 services:
-  nginx-proxy:
-    container_name: nginx-proxy
-    image: jwilder/nginx-proxy
-    ports:
-    - "80:80"
-    - "443:443"
-    volumes:
-     - /var/run/docker.sock:/tmp/docker.sock:ro
-     - /opt/docker-nginx/conf.d:/etc/nginx/conf.d
-     - /opt/docker-nginx/vhost.d:/etc/nginx/vhost.d
-     - /opt/docker-nginx/certs:/etc/nginx/certs:ro
-     - /opt/docker-nginx/html:/usr/share/nginx/html
-    labels:
-     - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
-  letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    volumes:
-      - /opt/docker-nginx/certs:/etc/nginx/certs:rw
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    volumes_from:
-      - nginx-proxy
+	nginx-proxy:
+		container_name: nginx-proxy
+		image: jwilder/nginx-proxy
+		ports:
+			- "80:80"
+			- "443:443"
+		volumes:
+			- /var/run/docker.sock:/tmp/docker.sock:ro
+			- /opt/docker-nginx/conf.d:/etc/nginx/conf.d
+			- /opt/docker-nginx/vhost.d:/etc/nginx/vhost.d
+			- /opt/docker-nginx/certs:/etc/nginx/certs:ro
+			- /opt/docker-nginx/html:/usr/share/nginx/html
+		labels:
+			- "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+	letsencrypt:
+		image: jrcs/letsencrypt-nginx-proxy-companion
+		volumes:
+			- /opt/docker-nginx/certs:/etc/nginx/certs:rw
+			- /var/run/docker.sock:/var/run/docker.sock:ro
+		volumes_from:
+			- nginx-proxy
 	db:
-		image: mariadb
+		image: mariadb:latest
 		restart: always
 		volumes: 
 			- /opt/docker-mariadb/mysql:/var/lib/mysql
