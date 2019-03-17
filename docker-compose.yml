@@ -29,11 +29,12 @@ services:
       - /root/web-docker/mariadb/mysql:/var/lib/mysql
     env_file:
       - mysql.env
+      - mysql_nexcloud.env
   nextcloud:
-    image: nextcloud:apache
+    image: nextcloud
     restart: always
     expose:
-      - 8094
+      - 80
     links:
       - db
     volumes:
@@ -43,6 +44,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
     environment:
       - MYSQL_HOST=db
+      - VIRTUAL_PORT=80
     env_file:
       - nextcloud.env
+      - mysql_nextcloud.env
 
