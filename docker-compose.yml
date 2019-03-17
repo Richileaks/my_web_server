@@ -28,6 +28,7 @@ services:
       - /opt/docker-mariadb/mysql:/var/lib/mysql
     env_file:
       - mysql.env
+      - nextcloud_mysql.env
   nextcloud:
     image: nextcloud:apache
     restart: always
@@ -44,4 +45,5 @@ services:
       - MYSQL_HOST=db
     env_file:
       - nextcloud.env
+      - nextcloud_mysql.env
 
