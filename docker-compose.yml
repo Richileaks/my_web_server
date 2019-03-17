@@ -8,16 +8,16 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /opt/docker-nginx/conf.d:/etc/nginx/conf.d
-      - /opt/docker-nginx/vhost.d:/etc/nginx/vhost.d
-      - /opt/docker-nginx/certs:/etc/nginx/certs:ro
-      - /opt/docker-nginx/html:/usr/share/nginx/html
+      - /root/web-docker/nginx/conf.d:/etc/nginx/conf.d
+      - /root/web-docker/nginx/vhost.d:/etc/nginx/vhost.d
+      - /root/web-docker/nginx/certs:/etc/nginx/certs:ro
+      - /root/web-docker/nginx/html:/usr/share/nginx/html
     labels:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes:
-      - /opt/docker-nginx/certs:/etc/nginx/certs:rw
+      - /root/web-docker/nginx/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     volumes_from:
       - nginx-proxy
@@ -25,7 +25,7 @@ services:
     image: mariadb:latest
     restart: always
     volumes: 
-      - /opt/docker-mariadb/mysql:/var/lib/mysql
+      - /root/web-docker/mariadb/mysql:/var/lib/mysql
     env_file:
       - mysql.env
       - nextcloud_mysql.env
@@ -37,8 +37,8 @@ services:
     links:
       - db
     volumes:
-      - /opt/docker-nextcloud/var_www_html:/var/www/html
-      - /opt/docker-nextcloud/data:/var/www/html/data
+      - /root/web-docker/nextcloud/var_www_html:/var/www/html
+      - /root/web-docker/nextcloud/data:/var/www/html/data
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
