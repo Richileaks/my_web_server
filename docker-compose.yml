@@ -9,6 +9,7 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /root/web-docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./uploadsize.conf:/etc/nginx/conf.d/uploadsize.conf:ro
       - /root/web-docker/nginx/vhost.d:/etc/nginx/vhost.d
       - /root/web-docker/nginx/dhparam:/etc/nginx/dhparam
       - /root/web-docker/nginx/certs:/etc/nginx/certs:ro
