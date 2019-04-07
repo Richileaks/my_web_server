@@ -49,4 +49,10 @@ services:
     env_file:
       - nextcloud.env
       - mysql_nextcloud.env
-
+  youtube-dl:
+    image: kmb32123/youtube-dl-server
+    restart: always
+    expose: 
+      - 8080
+    volumes:
+      - /root/web-docker/nextcloud/data/youtube-dl:/youtube-dl
