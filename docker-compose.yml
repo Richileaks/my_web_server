@@ -55,7 +55,7 @@ services:
     expose: 
       - 8080
     volumes:
-      - /root/web-docker/nextcloud/data/youtube-dl:/youtube-dl
+      - /root/web-docker/nextcloud/data/youtube-dl/files/Downloads:/youtube-dl
     environment:
       - VIRTUAL_PORT=8080
     env_file:
