@@ -49,3 +49,11 @@ services:
     env_file:
       - nextcloud.env
       - mysql_nextcloud.env
+  mumble:
+    image: phlak/mumble
+    restart: always
+    ports:
+      - "64738:64738"
+      - "64738:64738/udp"
+    volumes:
+      - /root/web-docker/mumble:/etc/mumble
