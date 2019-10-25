@@ -34,6 +34,8 @@ services:
   nextcloud:
     image: nextcloud
     restart: always
+    depends_on:
+      - db
     expose:
       - 80
     links:
@@ -54,6 +56,9 @@ services:
     restart: always
     ports:
       - "64738:64738"
+      - "10025:64738"
       - "64738:64738/udp"
     volumes:
       - /root/web-docker/mumble:/etc/mumble
+    env_file:
+      - mumble.env
